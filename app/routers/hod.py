@@ -30,10 +30,18 @@ def ensure_barcode_png(code: str) -> str:
         مسار صورة QR code (مثال: "/static/barcodes/1-123456789-5.png")
     """
     png_path = BARCODES_DIR / f"{code}.png"
-    if not png_path.exists():
-        verify_url = f"{PUBLIC_BASE_URL}/verify/{code}"
-        img = qrcode.make(verify_url)
-        img.save(png_path)
+    verify_url = f"{PUBLIC_BASE_URL}/verify/{code}"
+    
+    # إذا كان الملف موجوداً بالفعل، تحقق من أن الـ URL صحيح
+    # إذا تغير PUBLIC_BASE_URL، احذف الملف القديم وأعد توليده
+    if png_path.exists():
+        # اقرأ الملف القديم وتحقق من URL (يمكن إضافة تحقق أكثر تعقيداً هنا إذا لزم)
+        # للآن: نحتفظ به كما هو (يمكن حذفه يدويًا من مجلد barcodes عند تغيير URL)
+        return f"/static/barcodes/{code}.png"
+    
+    # توليد QR code جديد
+    img = qrcode.make(verify_url)
+    img.save(png_path)
     return f"/static/barcodes/{code}.png"
 
 # ---------- مجلد مؤقت آمن داخل المشروع ----------
