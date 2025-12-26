@@ -10,7 +10,7 @@ from ..models import SystemSetting
 # تحديد عنوان الموقع الأساسي (production URL أو localhost للتطوير)
 # على Railway: ضع PUBLIC_BASE_URL مثل https://your-app.railway.app
 # محلياً: استخدم http://127.0.0.1:8000 (الافتراضي)
-PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
+PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "https://guidxus-main-production.up.railway.app").rstrip("/")
 
 # ---- helpers (قراءة قيمة فقط scalar) ---------------------------------
 def _get_value(db: Session, key: str) -> Optional[str]:
