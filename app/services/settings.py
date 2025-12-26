@@ -7,7 +7,10 @@ from sqlalchemy.orm import Session
 from ..models import SystemSetting
 
 
-PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://127.0.0.1:8000")
+# تحديد عنوان الموقع الأساسي (production URL أو localhost للتطوير)
+# على Railway: ضع PUBLIC_BASE_URL مثل https://your-app.railway.app
+# محلياً: استخدم http://127.0.0.1:8000 (الافتراضي)
+PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
 
 # ---- helpers (قراءة قيمة فقط scalar) ---------------------------------
 def _get_value(db: Session, key: str) -> Optional[str]:
