@@ -132,6 +132,7 @@ class User(Base):
     college_admin_college = Column(String(255), nullable=True)  # الكلية التي يديرها أدمن الكلية
     is_hod = Column(Boolean, default=False, nullable=False)      # رئيس قسم؟
     is_doc = Column(Boolean, default=False, nullable=False)      # 👈 طبيب الكلية (جديد)
+    doctor_college = Column(String(255), nullable=True)          # الكلية التي يعمل فيها الطبيب
     hod_college = Column(String(255), nullable=True)             # كلية رئيس القسم (إن وُجد)
 
     is_active = Column(Boolean, default=True, nullable=False)
